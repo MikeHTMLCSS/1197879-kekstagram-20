@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Михаил Голубев](https://up.htmlacademy.ru/javascript/20/user/1197879).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Марченко](https://up.htmlacademy.ru/javascript/20/user/1101807).
 
 ---
 
