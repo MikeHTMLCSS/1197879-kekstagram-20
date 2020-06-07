@@ -11,13 +11,13 @@ var NAMES = ['Миша', 'Наташа', 'Соня', 'Маруся', 'Саша',
 var pictureTemplate = document.querySelector('#picture').content.querySelector('a');
 var pictureBlock = document.querySelector('.pictures');
 var generateData = function (picturesNumber, minLikes, maxLikes, messages, names) {
-    pictures = [];
+    var pictures = [];
     for (var i = 0; i < picturesNumber; i++) {
         var picture = {
             url: 'photos/' + (i + 1) + '.jpg',
             description: 'фото',
-            likes = Math.round(Math.random() * (maxLikes - minLikes) + minLikes),
-            comments = [{
+            likes: Math.round(Math.random() * (maxLikes - minLikes) + minLikes),
+            comments: [{
                 avatar: 'img/avatar-' + Math.round(Math.random() * (names.length - 1) + 1),
                 message: messages[Math.round(Math.random() * (messages.length - 1))],
                 name: names[Math.round(Math.random() * (names.length - 1))]
@@ -38,7 +38,7 @@ var generatePicture = function(pictureTemplate, data) {
     return picture;
 };
 var appendPictures = function (pictureBlock, pictureTemplate, picturesNumber, minLikes, maxLikes, messages, names) {
-    data = generateData(picturesNumber, minLikes, maxLikes, messages, names);
+    var data = generateData(picturesNumber, minLikes, maxLikes, messages, names);
     for (var i = 0; i < picturesNumber; i++) {
         pictureBlock.appendChild(generatePicture(pictureTemplate, data[i]));
     };
