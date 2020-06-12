@@ -4,6 +4,7 @@ var MIN_LIKES = 15;
 var MAX_LIKES = 200;
 var MESSAGES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?'];
 var NAMES = ['Миша', 'Наташа', 'Соня', 'Маруся', 'Саша', 'Лёва'];
+var FILTER = ['(', '(', '(', '(', '(', '('];
 var pictureTemplate = document.querySelector('#picture').content.querySelector('a');
 var pictureBlock = document.querySelector('.pictures');
 var generateData = function (picturesNumber, minLikes, maxLikes, messages, names) {
@@ -40,3 +41,19 @@ var appendPictures = function (block, template, picturesNumber, minLikes, maxLik
   }
 };
 appendPictures(pictureBlock, pictureTemplate, PICTURES_NUMBER, MIN_LIKES, MAX_LIKES, MESSAGES, NAMES);
+var form = document.querySelector('.img-upload__overlay');
+var upload = document.querySelector('#upload-file');
+upload.addEventListener('change', function () {
+  form.classList.remove('hidden');
+});
+var cancel = document.querySelector('#upload-cancel');
+cancel.addEventListener('change', function () {
+  form.classList.add('hidden');
+});
+var image = document.querySelector('.img-upload__preview img');
+var filter = 0;
+var effectValue = 25;
+var effectLevel = document.querySelector('.effect-level__pin');
+effectLevel.addEventListener('mouseup', function () {
+  image.style.filter = FILTER[filter] + effectValue + ')';
+});
