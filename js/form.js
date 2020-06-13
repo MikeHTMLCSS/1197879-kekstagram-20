@@ -5,8 +5,8 @@ window.makePicture = function (filterType) {
   upload.addEventListener('change', function () {
     form.classList.remove('hidden');
   });
-  var cancel = document.querySelector('#upload-cancel');
-  cancel.addEventListener('change', function () {
+  var cancel = document.querySelector('.img-upload__cancel');
+  cancel.addEventListener('mousedown', function () {
     form.classList.add('hidden');
   });
   var image = document.querySelector('.img-upload__preview img');
