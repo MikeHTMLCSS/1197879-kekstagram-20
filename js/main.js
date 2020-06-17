@@ -7,6 +7,7 @@ var NAMES = ['Миша', 'Наташа', 'Соня', 'Маруся', 'Саша',
 var FILTER = ['(', '(', '(', '(', '(', '('];
 var pictureTemplate = document.querySelector('#picture').content.querySelector('a');
 var pictureBlock = document.querySelector('.pictures');
+<<<<<<< Updated upstream
 var generateData = function (picturesNumber, minLikes, maxLikes, messages, names) {
   var pictures = [];
   for (var i = 0; i < picturesNumber; i++) {
@@ -57,3 +58,8 @@ var effectLevel = document.querySelector('.effect-level__pin');
 effectLevel.addEventListener('mouseup', function () {
   image.style.filter = FILTER[filter] + effectValue + ')';
 });
+=======
+var FILTER = ['none(', 'grayscale(', 'sepia(', 'invert(', 'blur(', 'brightness('];
+window.appendPictures(pictureBlock, pictureTemplate, PICTURES_NUMBER, MIN_LIKES, MAX_LIKES, MESSAGES, NAMES);
+window.makePicture(FILTER);
+>>>>>>> Stashed changes
