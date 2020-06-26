@@ -4,6 +4,7 @@
     var request = new XMLHttpRequest();
     var appendLoad = function () {
       window.appendPictures(pictureBlock, pictureTemplate, JSON.parse(request.responseText));
+      window.sortImages(pictureBlock, pictureTemplate, JSON.parse(request.responseText));
       request.removeEventListener('loadend', appendLoad);
     };
     request.addEventListener('loadend', appendLoad);
