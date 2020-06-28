@@ -1,29 +1,18 @@
 'use strict';
 (function () {
-  window.sortImages = function (block, template, data) {
+  window.sortImages = function (block, template, data, randomNumber) {
     var filter = document.querySelector('.img-filters');
     var filterButtons = document.querySelectorAll('.img-filters__button');
     var time = 0;
-    var popularData = [];
-    var randomData = [];
-    var normalData = data.splice();
-    for (var i = 0; i < normalData.length; i++) {
-      var choosed = 0;
-      for (var j = 0; j < normalData.length; j++) {
-        if (data[j].comments.length > data[choosed].comments.length) {
-          choosed = j;
+    var popularData = data.slice();
+    for (var i = popularData.length - 1; i > 0; i--) {
+      for (var j = 0; j < i; j++) {
+        if (popularData[j].comments.length < popularData[j + 1].comments.length) {
+          var buffer = popularData[j];
+          popularData[j] = popularData[j + 1];
+          popularData[j + 1] = buffer;
         }
       }
-      popularData.push(normalData[choosed]);
-      normalData.splice(choosed);
-    }
-    console.log(data);
-    console.log(data.splice());
-    normalData = data.splice();
-    for (var k = 0; k < 10; k++) {
-      choosed = Math.round(Math.random() * normalData.length);
-      randomData.push(normalData[choosed]);
-      normalData.splice(choosed);
     }
     filter.classList.remove('.img-filters--innative');
     filterButtons[0].addEventListener('click', function () {
@@ -42,11 +31,23 @@
         for (var m = 0; m < images.length; m++) {
           images[m].remove();
         }
+        var randomData = [];
+        var busyNumber = [];
+        for (var k = 0; k < randomNumber; k++) {
+          var choose = -1;
+          while (busyNumber.indexOf(choose) !== -1) {
+            choose = Math.round(Math.random() * data.length);
+          }
+          randomData.push(data[choose]);
+          busyNumber.push(choose);
+        }
+        randomData.splice(0, 1);
         window.appendPictures(block, template, randomData);
         time = 500;
       }
     });
     filterButtons[2].addEventListener('click', function () {
+      console.log(1);
       if (time < 1) {
         var images = document.querySelectorAll('.picture');
         for (var n = 0; n < images.length; n++) {
