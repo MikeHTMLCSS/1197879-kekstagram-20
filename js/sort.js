@@ -47,7 +47,6 @@
       }
     });
     filterButtons[2].addEventListener('click', function () {
-      console.log(1);
       if (time < 1) {
         var images = document.querySelectorAll('.picture');
         for (var n = 0; n < images.length; n++) {
