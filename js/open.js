@@ -45,6 +45,12 @@
           openImage(i);
         }
       });
+      pictureElements[i].addEventListener('mousedown', function (evt) {
+        evt.preventDefault();
+        if (evt.keyCode === 13) {
+          openImage(i);
+        }
+      });
     };
     for (var i = 0; i < pictureElements.length; i++) {
       addClickListener(i);
