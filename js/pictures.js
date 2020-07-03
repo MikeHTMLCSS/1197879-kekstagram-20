@@ -14,5 +14,6 @@
     for (var i = 0; i < data.length; i++) {
       block.appendChild(generatePicture(template, data[i]));
     }
+    window.openPictures(data);
   };
 })();
