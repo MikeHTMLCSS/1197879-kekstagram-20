@@ -10,15 +10,17 @@
     var filterBar = document.querySelector('.effect-level__depth');
     var effectLevel = document.querySelector('.effect-level__pin');
     var form = document.querySelector('.img-upload__form');
+    var smallerElement = document.querySelector('.scale__control--smaller');
+    var biggerElement = document.querySelector('.scale__control--bigger');
+    var sizeElement = document.querySelector('.scale__control--value');
     var filter = 0;
     var effectValue = 0.25;
-    // var hashTagInput = document.querySelector('.text__hashtags');
     var cursorCoord;
     var cursorOffset;
     upload.addEventListener('change', function () {
       formBlock.classList.remove('hidden');
     });
-    cancelElement.addEventListener('mousedown', function (evt) {
+    cancelElement.addEventListener('click', function (evt) {
       if (evt.which === 1) {
         formBlock.classList.add('hidden');
         sliderElement.classList.add('hidden');
@@ -79,29 +81,21 @@
       document.addEventListener('mousemove', onCursorMove);
       document.addEventListener('mouseup', onCursorUp);
     });
-    /* form.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-      var valid = true;
-      var hashTags = hashTagInput.value.split(' ');
-      if (hashTags.length > 5) {
-        valid = false;
-      }
-      for (var j = 0; j < hashTags.length; j++) {
-        if (hashTags[j][0] !== '#' || hashTags[j].length < 2 || hashTags[j].length > 20) {
-          valid = false;
-        }
-        for (var k = 0; k < hashTags[j].length; k++) {
-          // eslint-disable-next-line no-constant-condition
-          if (0) {
-            valid = false;
-          }
+    smallerElement.addEventListener('click', function (evt) {
+      if (evt.which === 1) {
+        if (sizeElement.value !== '25%') {
+          sizeElement.value = sizeElement.value.substring(0, sizeElement.value.length - 1) - 25 + '%';
+          imagePreview.style.transform = 'scale(' + sizeElement.value.substring(0, sizeElement.value.length - 1) / 100 + ')';
         }
       }
-      if (valid) {
-        form.submit();
-      } else {
-        hashTagInput.setCustomValidity('Невалидный хеш-тэг');
+    });
+    biggerElement.addEventListener('click', function (evt) {
+      if (evt.which === 1) {
+        if (sizeElement.value !== '100%') {
+          sizeElement.value = sizeElement.value.substring(0, sizeElement.value.length - 1) * 1 + 25 + '%';
+          imagePreview.style.transform = 'scale(' + sizeElement.value.substring(0, sizeElement.value.length - 1) / 100 + ')';
+        }
       }
-    });*/
+    });
   };
 })();
