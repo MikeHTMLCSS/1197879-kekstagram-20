@@ -14,6 +14,7 @@
     var commentsLoaderElement = document.querySelector('.comments-loader');
     var uploadedCommentsElement = document.querySelector('.loaded-comments__count');
     var uploadedComments;
+    var commentElements;
     var makeComment = function (i, k) {
       var commentElement = document.createElement('li');
       commentElement.classList.add('social__comment');
@@ -30,21 +31,20 @@
       commentElement.appendChild(textElement);
       commentsElement.appendChild(commentElement);
     };
-    var loadComments = function (i) {
-      if (data[i].comments.length > uploadedComments + 5) {
-        for (var m = uploadedComments; m < uploadedComments + 5; m++) {
-          makeComment(i, m);
+    var loadComments = function (evt) {
+      if (evt.which === 1) {
+        if (uploadedComments < commentElements.length) {
+          for (var i = uploadedComments; i < uploadedComments + 5 && i < commentElements.length; i++) {
+            commentElements[i].classList.remove('hidden');
+          }
+          uploadedComments = uploadedComments + 5;
+          uploadedCommentsElement.textContent = uploadedComments;
         }
-        commentsCountBlock.classList.remove('hidden');
-        commentsLoaderElement.classList.remove('hidden');
-        uploadedComments = uploadedComments + 5;
-        uploadedCommentsElement.textContent = uploadedComments;
-      } else {
-        for (var n = uploadedComments; n < data[i].comments.length; n++) {
-          makeComment(i, n);
+        if (uploadedComments >= commentElements.length) {
+          commentsLoaderElement.removeEventListener('click', loadComments);
+          commentsCountBlock.classList.add('hidden');
+          commentsLoaderElement.classList.add('hidden');
         }
-        commentsCountBlock.classList.add('hidden');
-        commentsLoaderElement.classList.add('hidden');
       }
     };
     var openImage = function (i) {
@@ -54,28 +54,22 @@
       likesElement.textContent = data[i].likes;
       commentCountElement.textContent = data[i].comments.length;
       captionElement.textContent = data[i].description;
-      var commentElements = document.querySelectorAll('.social__comment');
+      commentElements = document.querySelectorAll('.social__comment');
       for (var j = 0; j < commentElements.length; j++) {
         commentElements[j].remove();
       }
-      if (data[i].comments.length > 5) {
-        for (var k = 0; k < 5; k++) {
-          makeComment(i, k);
-        }
-        uploadedCommentsElement.textContent = 5;
-        commentsLoaderElement.addEventListener('click', function (evt) {
-          if (evt.which === 1) {
-            loadComments(i);
-          }
-        });
+      for (var k = 0; k < data[i].comments.length; k++) {
+        makeComment(i, k);
+      }
+      commentElements = document.querySelectorAll('.social__comment');
+      for (var l = 5; l < commentElements.length; l++) {
+        commentElements[l].classList.add('hidden');
+      }
+      uploadedCommentsElement.textContent = 5;
+      if (commentElements.length > 5) {
+        commentsLoaderElement.addEventListener('click', loadComments);
         commentsCountBlock.classList.remove('hidden');
         commentsLoaderElement.classList.remove('hidden');
-      } else {
-        for (var l = 0; l < data[i].comments.length; l++) {
-          makeComment(i, l);
-        }
-        commentsCountBlock.classList.add('hidden');
-        commentsLoaderElement.classList.add('hidden');
       }
       bodyElement.classList.add('modal-open');
     };
@@ -94,11 +88,7 @@
       if (evt.which === 1) {
         bigPictureElement.classList.add('hidden');
         bodyElement.classList.remove('modal-open');
-        commentsLoaderElement.removeEventListener('click', function (event) {
-          if (event.which === 1) {
-            loadComments(i);
-          }
-        });
+        commentsLoaderElement.removeEventListener('click', loadComments);
       }
     });
     document.addEventListener('keydown', function (evt) {

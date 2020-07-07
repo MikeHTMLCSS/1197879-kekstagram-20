@@ -35,8 +35,10 @@
   var WIDTH = 453;
   var PATH = 'https://javascript.pages.academy/kekstagram/data';
   var RANDOM_NUMBER = 10;
+  var SPECIAL_SIMBOLS = ['#', '$', '@'];
   var pictureTemplate = document.querySelector('#picture').content.querySelector('a');
   var pictureBlock = document.querySelector('.pictures');
   window.load(pictureBlock, pictureTemplate, PATH, RANDOM_NUMBER + 1);
   window.makePicture(FILTERS, WIDTH);
+  window.sendForm(SPECIAL_SIMBOLS);
 })();
