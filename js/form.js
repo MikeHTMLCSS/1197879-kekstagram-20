@@ -27,6 +27,7 @@
         form.reset();
         imagePreview.style.filter = 'none';
         filterBar.style.width = width / 4 + 'px';
+        imagePreview.style.transform = 'none';
       }
     });
     document.addEventListener('keydown', function (evt) {
@@ -36,6 +37,7 @@
         form.reset();
         imagePreview.style.filter = 'none';
         filterBar.style.width = width / 4 + 'px';
+        imagePreview.style.transform = 'none';
       }
     });
     var addFilterListener = function (i) {
