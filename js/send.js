@@ -17,13 +17,8 @@
               break;
             }
             for (var j = 1; j < hashTags[i].length; j++) {
-              for (var k = 0; k < specialSymbols.length; k++) {
-                if (hashTags[i][j] === specialSymbols[k]) {
-                  valid = false;
-                  break;
-                }
-              }
-              if (!valid) {
+              if (specialSymbols.indexOf(hashTags[i][j]) !== -1) {
+                valid = false;
                 break;
               }
             }
