@@ -1,7 +1,7 @@
 'use strict';
 (function () {
   window.sortImages = function (block, template, data, randomNumber) {
-    var filter = document.querySelector('.img-filters');
+    var filterBlock = document.querySelector('.img-filters');
     var filterButtons = document.querySelectorAll('.img-filters__button');
     var time = 0;
     var popularData = data.slice();
@@ -14,7 +14,7 @@
         }
       }
     }
-    filter.classList.remove('.img-filters--innative');
+    filterBlock.classList.remove('img-filters--inactive');
     filterButtons[0].addEventListener('click', function () {
       if (time < 1) {
         var images = document.querySelectorAll('.picture');
@@ -22,6 +22,9 @@
           images[l].remove();
         }
         window.appendPictures(block, template, data);
+        filterButtons[0].classList.add('img-filters__button--active');
+        filterButtons[1].classList.remove('img-filters__button--active');
+        filterButtons[2].classList.remove('img-filters__button--active');
         time = 500;
       }
     });
@@ -43,6 +46,9 @@
         }
         randomData.splice(0, 1);
         window.appendPictures(block, template, randomData);
+        filterButtons[1].classList.add('img-filters__button--active');
+        filterButtons[0].classList.remove('img-filters__button--active');
+        filterButtons[2].classList.remove('img-filters__button--active');
         time = 500;
       }
     });
@@ -53,6 +59,9 @@
           images[n].remove();
         }
         window.appendPictures(block, template, popularData);
+        filterButtons[2].classList.add('img-filters__button--active');
+        filterButtons[1].classList.remove('img-filters__button--active');
+        filterButtons[0].classList.remove('img-filters__button--active');
         time = 500;
       }
     });
