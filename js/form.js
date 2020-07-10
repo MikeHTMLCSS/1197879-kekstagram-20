@@ -13,15 +13,30 @@
     var smallerElement = document.querySelector('.scale__control--smaller');
     var biggerElement = document.querySelector('.scale__control--bigger');
     var sizeElement = document.querySelector('.scale__control--value');
+    var hashTagsInput = document.querySelector('.text__hashtags');
+    var commentsInput = document.querySelector('.text__description');
     var filter = 0;
     var effectValue = 0.25;
     var cursorCoord;
     var cursorOffset;
+    var focused;
     upload.addEventListener('change', function () {
       formBlock.classList.remove('hidden');
     });
+    hashTagsInput.addEventListener('focus', function () {
+      focused = true;
+    });
+    hashTagsInput.addEventListener('blur', function () {
+      focused = false;
+    });
+    commentsInput.addEventListener('focus', function () {
+      focused = true;
+    });
+    commentsInput.addEventListener('blur', function () {
+      focused = false;
+    });
     cancelElement.addEventListener('click', function (evt) {
-      if (evt.which === 1) {
+      if (evt.which === 1 && !focused) {
         formBlock.classList.add('hidden');
         sliderElement.classList.add('hidden');
         form.reset();
@@ -31,7 +46,7 @@
       }
     });
     document.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === 27) {
+      if (evt.keyCode === 27 && !focused) {
         formBlock.classList.add('hidden');
         sliderElement.classList.add('hidden');
         form.reset();
