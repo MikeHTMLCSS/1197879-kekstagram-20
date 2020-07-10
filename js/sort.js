@@ -39,7 +39,7 @@
         for (var k = 0; k < randomNumber; k++) {
           var choose = -1;
           while (busyNumber.indexOf(choose) !== -1) {
-            choose = Math.round(Math.random() * data.length);
+            choose = Math.round(Math.random() * (data.length - 1));
           }
           randomData.push(data[choose]);
           busyNumber.push(choose);
