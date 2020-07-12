@@ -33,12 +33,13 @@
     },
   ];
   var WIDTH = 453;
-  var PATH = 'https://javascript.pages.academy/kekstagram/data';
+  var PATH_DATA = 'https://javascript.pages.academy/kekstagram/data';
   var RANDOM_NUMBER = 10;
   var SPECIAL_SIMBOLS = ['#', '$', '@'];
+  var PATH = 'https://javascript.pages.academy/kekstagram';
   var pictureTemplate = document.querySelector('#picture').content.querySelector('a');
   var pictureBlock = document.querySelector('.pictures');
-  window.load(pictureBlock, pictureTemplate, PATH, RANDOM_NUMBER + 1);
+  window.load(pictureBlock, pictureTemplate, PATH_DATA, RANDOM_NUMBER + 1);
   window.makePicture(FILTERS, WIDTH);
-  window.sendForm(SPECIAL_SIMBOLS);
+  window.sendForm(SPECIAL_SIMBOLS, PATH);
 })();
