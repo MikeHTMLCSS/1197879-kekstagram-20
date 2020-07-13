@@ -52,7 +52,7 @@
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
       formBlock.classList.add('hidden');
-      request = new XMLHttpRequest;
+      request = new XMLHttpRequest();
       request.open('POST', path);
       request.send(new FormData(formElement));
       formElement.reset();
