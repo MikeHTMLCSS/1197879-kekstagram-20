@@ -25,7 +25,7 @@
         filterButtons[0].classList.add('img-filters__button--active');
         filterButtons[1].classList.remove('img-filters__button--active');
         filterButtons[2].classList.remove('img-filters__button--active');
-        time = 500;
+        time = 50;
       }
     });
     filterButtons[1].addEventListener('click', function () {
@@ -39,7 +39,7 @@
         for (var k = 0; k < randomNumber; k++) {
           var choose = -1;
           while (busyNumber.indexOf(choose) !== -1) {
-            choose = Math.round(Math.random() * data.length);
+            choose = Math.round(Math.random() * (data.length - 1));
           }
           randomData.push(data[choose]);
           busyNumber.push(choose);
@@ -49,7 +49,7 @@
         filterButtons[1].classList.add('img-filters__button--active');
         filterButtons[0].classList.remove('img-filters__button--active');
         filterButtons[2].classList.remove('img-filters__button--active');
-        time = 500;
+        time = 50;
       }
     });
     filterButtons[2].addEventListener('click', function () {
@@ -62,13 +62,13 @@
         filterButtons[2].classList.add('img-filters__button--active');
         filterButtons[1].classList.remove('img-filters__button--active');
         filterButtons[0].classList.remove('img-filters__button--active');
-        time = 500;
+        time = 50;
       }
     });
     setInterval(function () {
       if (time > 0) {
         time = time - 1;
       }
-    }, 1);
+    }, 10);
   };
 })();
